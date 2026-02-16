@@ -1,0 +1,29 @@
+# Dataset configuration for crowd/person detection training
+# Update paths to point to your local dataset directories
+
+path: ./datasets/crowd_person  # Root dataset directory
+train: images/train
+val: images/val
+
+# Single class: person only
+names:
+  0: person
+
+# Download instructions:
+# 1. COCO Person subset:
+#    - Download COCO 2017 from https://cocodataset.org
+#    - Filter to only 'person' class annotations
+#    - Or use: from ultralytics.data.utils import autosplit
+#
+# 2. CrowdHuman (optional, for dense crowd scenarios):
+#    - Download from https://www.crowdhuman.org
+#    - Convert annotations to YOLO format
+#
+# Expected structure:
+# datasets/crowd_person/
+#   images/
+#     train/  (training images)
+#     val/    (validation images)
+#   labels/
+#     train/  (YOLO format .txt per image)
+#     val/    (YOLO format .txt per image)

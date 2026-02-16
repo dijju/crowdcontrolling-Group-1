@@ -1,0 +1,21 @@
+# Systemd service for auto-start on Jetson Nano boot
+# Copy to: sudo cp crowd-control.service /etc/systemd/system/
+# Enable:  sudo systemctl enable crowd-control
+# Start:   sudo systemctl start crowd-control
+# Logs:    journalctl -u crowd-control -f
+
+[Unit]
+Description=Crowd Control Monitoring System
+After=network.target
+
+[Service]
+Type=simple
+User=jetson
+WorkingDirectory=/home/jetson/crowd-control
+ExecStart=/home/jetson/crowd-control/venv/bin/python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
